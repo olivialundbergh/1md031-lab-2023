@@ -8,4 +8,4 @@ Before you submit the final version of your labs, make sure that your project fu
 
 ## 01 Git
 
-- [hej] Fork and clone the 1md031-lab-21 repository
+- [hejdå] Fork and clone the 1md031-lab-21 repository
