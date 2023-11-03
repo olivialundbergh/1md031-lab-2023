@@ -1,0 +1,123 @@
+/*@import url("reset.css");*/
+@import url('https://fonts.googleapis.com/css2?family=Bungee+Inline&display=swap');
+/*c Stylesheet burger ordering inc.*/
+/*
+$amber: #ffbe0bff;
+$orange-pantone: #fb5607ff;
+$rose: #ff006eff;
+$blue-violet: #8338ecff;
+$azure: #3a86ffff;
+*/
+header {        /*Huvudtitel*/
+    padding-top: 70px;
+    padding-left: 10px;
+    margin-left:5px;
+    margin-right: 2px;
+    position: absolute;
+    font-size: 85pt;
+    color: #ff006eff;
+    text-align: center;
+    z-index: 2; /*ChatGPT singe "margin-top did not work*/
+
+    
+}
+.topPage{
+    height: 250px;
+    margin-left: 2px;
+    margin-right: 2px;
+    padding: 10px;
+    text-align: center;
+    overflow: hidden;
+}
+
+.stars{
+    width:100%;
+    height: 350px;
+    opacity: 0.9;
+}
+
+.deliveryInfo,.firstText{
+    border: 5px solid #8338ecff; 
+    padding-left: 50px; 
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-radius:50px; 
+    background-color: #FFFACD; 
+    margin-top: 20px;
+    margin-bottom: 20px;
+    
+    
+ }
+body{
+    font-family: 'Bungee Inline', sans-serif;
+    font-size: 11pt;
+    color:#ffbe0bff;
+    background-color:#A2D6F9;
+}
+
+p, ul{
+    font-size: 12pt;
+}
+
+
+
+
+.foodContent{       /*Matinnehåll*/
+    font-weight: bold;
+    color: #2EC4B6;
+    text-align: center;
+}
+
+.burgerSection{     /*Hamburgar sektion*/
+    text-align: center; /*makes the hamburgers centered*/
+    background: radial-gradient(#ffbe0bff, #fb5607ff, #ff006eff, #8338ecff, #3a86ffff);
+    border: 5px solid #8338ecff;  
+    border-radius:50px; 
+}
+
+.theBurgerItem{
+    padding: 15px;
+    margin:5px;
+}
+.deliveryInfo{      /*Information sektion*/
+    background:linear-gradient(180deg, #8338ecff , #ff006eff, #fb5607ff, #ffbe0bff);
+    color:#00173C;
+}
+
+li::marker {         /*Listmarkörer*/
+    content: "✔  ";
+    color: #00173C;
+    padding-right: 20px;
+    margin-right: 20px;
+  }
+
+  button {      /* The button*/
+        padding: 2px 12px 2px 12px;
+        margin-top: 5px;
+        margin-bottom: 7px;
+        font-family: 'Bungee Inline', sans-serif;
+        font-size: 20pt;
+        color: black;
+      } 
+      button > img, /*this part selects the img as a direct child of the button*/
+      button > span { /*this part selects the span as a direct child of the button*/
+        vertical-align: middle;  /* Add this to align vertically */
+      }    
+
+button:hover {      /*När man håller på the button*/
+    background: linear-gradient(225deg, #ffbe0bff, #fb5607ff, #ff006eff, #8338ecff, #3a86ffff);
+
+ }
+ hr{        /* "Horizontal line"*/
+    background: linear-gradient(90deg, #ffbe0bff, #fb5607ff, #ff006eff, #8338ecff, #3a86ffff);
+    height: 5px;
+    border:none;
+    margin: 0;
+ }
+
+ .foodInfo{
+    list-style-position: inside;
+ }
+ footer{
+    color:  #00173C;
+ }

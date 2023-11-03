@@ -1,56 +1,83 @@
 <!DOCTYPE HTML>
 <html lang="en">
    <head>
-       <title>Burger ordering!</title>
+    <link rel="stylesheet" type="text/css" href="mystylesheet.css">
+    <title>Burger ordering!</title>
+    <div class="topPage">
+       
+       <header> Burger Inc. Uppsala </header>
+    
        <meta charset="utf-8"/>
     </head>
+    <img class="stars" src="the_Stars.gif"> 
+</div> 
 <body>
-    <header>
-        Burger Inc. Uppsala </header>
+
+ 
 <main>
-    <section>
-    <h1> 
-        Select your order below </h1>
+    <section class="firstText">
+    <h2> 
+        Select your order below </h2>
         <p>
             Here you can choose what burgers you want delivered, and any addons to the food </p>
-    <br />
-    <div style="display: inline-block;">
+    <br/>
+    </section>
+    <section class="burgerSection">
+    <div class="theBurgerItem" style="display: inline-block;">
     <h2> The extra cheesy burger</h2>
     <img src="hamburger1.png" style="height: 250px">
     <p>Contains: </p>
-    <ul>
+    <section class="foodContent">
+    <ul class="foodInfo">
         <li>Gluten</li>
         <li>Dairy</li>
-        <li>688 cal</li>
+        <li>688 Kcal</li>
     </ul>
+    </section>
 </div>
-<div style="display: inline-block;">
+<div class="theBurgerItem" style="display: inline-block;">
     <h2>The tasty chicken burger</h2>
     <img src="betterhamburger2.png" style="height: 250px">
     <p>Contains: </p>
-    <ul>
+    <section class="foodContent">   
+    <ul class="foodInfo">
         <li>Gluten</li>
         <li>Dairy</li>
-        <li>712 cal</li>
+        <li>712 Kcal</li>
     </ul>
+    </section>
 </div>
-<div style="display: inline-block;">
+<div class="theBurgerItem" style="display: inline-block;">
     <h2>The mega deluxe burger</h2>
     <img src="megaburger.png" style="height:250px">
-    <p>Contains: </p>
-    <ul>
+    <p>Contains:</p>
+    <section class="foodContent">
+    <ul class="foodInfo">
         <li>Gluten</li>
         <li>Dairy</li>
-        <li>924 cal</li>
+        <li>924 Kcal</li>
     </ul>
+    </section>
 </div>
-</section>
-<section>
+
+<div class="theBurgerItem" style="display: inline-block;">
+    <h2> The crispy fries</h2>
+    <img src="frecnh_fries.png" style="height: 250px">
+    <p>Contains: </p>
+    <section class="foodContent">
+    <ul class="foodInfo">
+        <li>Gluten</li>
+        <li>99 Kcal</li>
+        <li>Potato</li>
+    </ul>
+    </section>
    
 </section>
+</section>
+</section>
 
-
-    <section><br>
+<section class="deliveryInfo"><br>
+  
     <h2>
         Your delivery information
     </h2>
@@ -76,9 +103,6 @@
         maxlength="100"></textarea>
 
     </p>
-</section>
-
-<section>
 <form>
     <h3>Your gender:</h3>
     <input type="radio" id="nonDiscolsed" name="gender" value="nonDiscolsed" checked>
@@ -87,9 +111,8 @@
         <label for="woman">Woman</label><br>
     <input type="radio" id="man" name="gender" value="Man">
         <label for="man">Man</label></form>
-</section>
-
-<section> <h2>
+        
+<h2>
     Payment choice:
 </h2>
 <p>Choose your payment of choice</p>
@@ -102,23 +125,20 @@
         <option>Cash</option>
         <option>Invoice</option>
     </select>
- </p></section>
- <br> <button type="submit">
+ </p>
+ <button type="submit">
     <img src="burger.gif"  style="width: 55px;"></img>
-    Send info :)
+    Send info!  
 </button>
- <section> 
-    <br />
+ 
 <h1>
     About us: </h1>
 <p>
     We are an Uppsala based company, with fast deliveries and happy customers! </p>
-</section>
-
 </main>     
 <br>  
-
-<hr> 
+</section>
+<hr> <br>
    <footer> 
     &copy; Burger Inc. Uppsala </footer>
 </body>
