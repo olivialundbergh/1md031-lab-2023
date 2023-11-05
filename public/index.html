@@ -1,89 +1,90 @@
 <!DOCTYPE HTML>
+
 <html lang="en">
-   <head>
+    <meta charset="utf-8"/>
     <link rel="stylesheet" type="text/css" href="mystylesheet.css">
     <title>Burger ordering!</title>
-    <div class="topPage">
-       
-       <header> Burger Inc. Uppsala </header>
-    
-       <meta charset="utf-8"/>
-    </head>
-    <img class="stars" src="the_Stars.gif"> 
-</div> 
-<body>
 
- 
+<head>
+    <div class="topPage">
+        <header> Burger Inc. Uppsala </header>  
+</head>
+        <img class="stars" src="the_Stars.gif"> 
+    </div> 
+
+<body>
 <main>
     <section class="firstText">
-    <h2> 
-        Select your order below </h2>
-        <p>
-            Here you can choose what burgers you want delivered, and any addons to the food </p>
-    <br/>
+        <h1> Select your order below </h1>
+        <p>Here you can choose what burgers you want delivered, and any addons to the food </p>
     </section>
-    <section class="burgerSection">
-    <div class="theBurgerItem" style="display: inline-block;">
-    <h2> The extra cheesy burger</h2>
-    <img src="hamburger1.png" style="height: 250px">
-    <p>Contains: </p>
-    <section class="foodContent">
-    <ul class="foodInfo">
-        <li>Gluten</li>
-        <li>Dairy</li>
-        <li>688 Kcal</li>
-    </ul>
-    </section>
-</div>
-<div class="theBurgerItem" style="display: inline-block;">
-    <h2>The tasty chicken burger</h2>
-    <img src="betterhamburger2.png" style="height: 250px">
-    <p>Contains: </p>
-    <section class="foodContent">   
-    <ul class="foodInfo">
-        <li>Gluten</li>
-        <li>Dairy</li>
-        <li>712 Kcal</li>
-    </ul>
-    </section>
-</div>
-<div class="theBurgerItem" style="display: inline-block;">
-    <h2>The mega deluxe burger</h2>
-    <img src="megaburger.png" style="height:250px">
-    <p>Contains:</p>
-    <section class="foodContent">
-    <ul class="foodInfo">
-        <li>Gluten</li>
-        <li>Dairy</li>
-        <li>924 Kcal</li>
-    </ul>
-    </section>
-</div>
 
-<div class="theBurgerItem" style="display: inline-block;">
-    <h2> The crispy fries</h2>
-    <img src="frecnh_fries.png" style="height: 250px">
-    <p>Contains: </p>
-    <section class="foodContent">
-    <ul class="foodInfo">
-        <li>Gluten</li>
-        <li>99 Kcal</li>
-        <li>Potato</li>
-    </ul>
-    </section>
-   
+<section burgerSection>
+<div class="wrapper">
+
+    <div class="burger">
+        <h2> The extra cheesy burger</h2>
+        <img src="hamburger1.png" style="height: 250px">
+        <p>Contains: </p>
+
+        <section class="foodContent">
+        <ul class="foodInfo">
+            <li>Gluten</li>
+            <li>Dairy</li>
+            <li>688 Kcal</li>
+        </ul>
+    </div>
+
+
+    <div class="burger">
+        <h2>The tasty chicken burger</h2>
+        <img src="betterhamburger2.png" style="height: 250px">
+        <p>Contains: </p>
+
+        <section class="foodContent">   
+        <ul class="foodInfo">
+            <li>Gluten</li>
+            <li>Dairy</li>
+            <li>712 Kcal</li>
+        </ul>
+        </section>
+    </div>
+
+    <div class="burger" >
+        <h2>The mega deluxe burger</h2>
+        <img src="megaburger.png" style="height:250px">
+        <p>Contains:</p>
+
+        <section class="foodContent">
+        <ul class="foodInfo">
+            <li>Gluten</li>
+            <li>Dairy</li>
+            <li>924 Kcal</li>
+        </ul>
+        </section>
+    </div>
+
+    <div class="burger">
+        <h2> The very crispy fries</h2>
+        <img src="frecnh_fries.png" style="height: 250px">
+        <p>Contains: </p>
+
+        <section class="foodContent">
+        <ul class="foodInfo">
+            <li>Gluten</li>
+            <li>99 Kcal</li>
+            <li>Potato</li>
+        </ul>
+        </section>
+    </div>
 </section>
-</section>
-</section>
+</div>
 
 <section class="deliveryInfo"><br>
-  
-    <h2>
-        Your delivery information
-    </h2>
-        <p>
+    <h1> Your delivery information </h1>
+    <p>
         <label for="firstname">Your Name</label><br>
-        <input type="text" id="firstname" name="fn" required="required" placeholder="First and Last name...">
+        <input type="text" id="firstname" name="fn" required="required" placeholder="First & Last name...">
     </p>
     <p>
         <label for="email">E-mail</label><br>
@@ -91,33 +92,31 @@
     </p>
     <p>
         <label for="street">Address</label><br>
-        <input type="text" id="street" name="st" required="required" placeholder="Home adress">
+        <input type="text" id="street" name="st" required="required" placeholder="Home adress...">
     </p>
     <p>
         <label for="zipcode">ZipCode</label><br>
-        <input type="number" id="zipcode" name="zc" required="required" placeholder="ZipCode" > 
+        <input type="number" id="zipcode" name="zc" required="required" placeholder="ZipCode..." > 
     </p>
     <p>
-        <label for="additionalInformation">Additional information:</label><br>
+        <label for="additionalInformation">Additional information</label><br>
         <textarea id="additionalInformation" name="textarea" rows="3" cols="30" placeholder="Put extra info on how to deliever here..."
         maxlength="100"></textarea>
-
     </p>
+
 <form>
-    <h3>Your gender:</h3>
+    <h3> Your gender: </h3>
     <input type="radio" id="nonDiscolsed" name="gender" value="nonDiscolsed" checked>
         <label for="nonDiscolsed">Prefer not to disclose</label><br>
     <input type="radio" id="woman" name="gender" value="Woman">
         <label for="woman">Woman</label><br>
     <input type="radio" id="man" name="gender" value="Man">
-        <label for="man">Man</label></form>
+        <label for="man">Man</label>
+</form>
         
-<h2>
-    Payment choice:
-</h2>
-<p>Choose your payment of choice</p>
+<br><h3> Payment choice: </h3>
 <p>
-    <label for="payment">Payment method:</label>
+    <label for="payment"> Payment method: </label>
     <select id="payment" name="pmt">
         <option>Klarna</option>
         <option>Swish</option>
@@ -126,20 +125,21 @@
         <option>Invoice</option>
     </select>
  </p>
+
  <button type="submit">
     <img src="burger.gif"  style="width: 55px;"></img>
     Send info!  
 </button>
  
-<h1>
-    About us: </h1>
-<p>
-    We are an Uppsala based company, with fast deliveries and happy customers! </p>
-</main>     
-<br>  
-</section>
-<hr> <br>
-   <footer> 
-    &copy; Burger Inc. Uppsala </footer>
+<h1> About us: </h1>
+<p> We are an Uppsala based company, with fast deliveries and happy customers! </p>
+</main>
+
+<br></section>
+
+<hr> <br> 
+<footer> 
+    &copy; Burger Inc. Uppsala 2023
+</footer>
 </body>
 </html>

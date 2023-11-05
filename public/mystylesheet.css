@@ -1,4 +1,4 @@
-/*@import url("reset.css");*/
+@import url("reset.css");
 @import url('https://fonts.googleapis.com/css2?family=Bungee+Inline&display=swap');
 /*c Stylesheet burger ordering inc.*/
 /*
@@ -8,19 +8,19 @@ $rose: #ff006eff;
 $blue-violet: #8338ecff;
 $azure: #3a86ffff;
 */
-header {        /*Huvudtitel*/
+
+header{        /*Huvudtitel*/
     padding-top: 70px;
-    padding-left: 10px;
-    margin-left:5px;
-    margin-right: 2px;
+    padding-left: 216px;
+    padding-right: 2px;
+    margin:10px;
     position: absolute;
     font-size: 85pt;
     color: #ff006eff;
-    text-align: center;
-    z-index: 2; /*ChatGPT singe "margin-top did not work*/
-
     
+    z-index: 2; /*ChatGPT singe "margin-top did not work*/    
 }
+
 .topPage{
     height: 250px;
     margin-left: 2px;
@@ -29,6 +29,7 @@ header {        /*Huvudtitel*/
     text-align: center;
     overflow: hidden;
 }
+
 
 .stars{
     width:100%;
@@ -45,40 +46,49 @@ header {        /*Huvudtitel*/
     background-color: #FFFACD; 
     margin-top: 20px;
     margin-bottom: 20px;
-    
-    
  }
+
+ h1{
+    font-size: 30pt;
+ }
+
+ h2, h3{
+    font-size: 22pt;
+ }
+
+.burger p{
+    color: #00173C;
+}
+
 body{
     font-family: 'Bungee Inline', sans-serif;
-    font-size: 11pt;
     color:#ffbe0bff;
     background-color:#A2D6F9;
 }
 
-p, ul{
-    font-size: 12pt;
+p, ul, label{
+    font-size: 18pt;
+    font-weight: bolder;
 }
 
-
-
-
-.foodContent{       /*Matinnehåll*/
-    font-weight: bold;
-    color: #2EC4B6;
-    text-align: center;
+::placeholder{
+    font-size: 11.5pt;
+    color: #00173C;
+    opacity: 0.7;
 }
 
-.burgerSection{     /*Hamburgar sektion*/
-    text-align: center; /*makes the hamburgers centered*/
+.wrapper{
+    display: grid;
     background: radial-gradient(#ffbe0bff, #fb5607ff, #ff006eff, #8338ecff, #3a86ffff);
     border: 5px solid #8338ecff;  
     border-radius:50px; 
+    grid-template-columns: 25% 25% 25% 25%;
 }
 
-.theBurgerItem{
-    padding: 15px;
-    margin:5px;
+.burger{
+    text-align: center;
 }
+
 .deliveryInfo{      /*Information sektion*/
     background:linear-gradient(180deg, #8338ecff , #ff006eff, #fb5607ff, #ffbe0bff);
     color:#00173C;
@@ -86,18 +96,17 @@ p, ul{
 
 li::marker {         /*Listmarkörer*/
     content: "✔  ";
-    color: #00173C;
-    padding-right: 20px;
-    margin-right: 20px;
-  }
+    text-align: center;
+    color: hsl(217, 100%, 12%);
+}
 
-  button {      /* The button*/
-        padding: 2px 12px 2px 12px;
-        margin-top: 5px;
-        margin-bottom: 7px;
-        font-family: 'Bungee Inline', sans-serif;
-        font-size: 20pt;
-        color: black;
+button {      /* The button*/
+    padding: 2px 12px 2px 12px;
+    margin-top: 5px;
+    margin-bottom: 7px;
+    font-family: 'Bungee Inline', sans-serif;
+    font-size: 20pt;
+    color: black;
       } 
       button > img, /*this part selects the img as a direct child of the button*/
       button > span { /*this part selects the span as a direct child of the button*/
