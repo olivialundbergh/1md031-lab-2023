@@ -52,7 +52,7 @@ header{        /*Huvudtitel*/
     font-size: 30pt;
  }
 
- h2, h3{
+ h2, h33{
     font-size: 22pt;
  }
 
@@ -68,7 +68,7 @@ body{
 
 p, ul, label{
     font-size: 18pt;
-    font-weight: bolder;
+    
 }
 
 ::placeholder{
