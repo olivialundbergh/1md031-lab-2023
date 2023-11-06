@@ -18,6 +18,22 @@ import io from 'socket.io-client'
 
 const socket = io();
 
+//Här ska burger funkttionen ligga
+function MenuItem(name, url, gluten, lactose, kcal) {
+    this.name = name; // The *this* keyword refers to the object itself
+    this.theUrl = url;
+    this.containsGluten = gluten;
+    this.containsLactose = lactose;
+    this.calories = kcal;
+}
+const burgerArray = [
+  new MenuItem("The extra cheesy burger", "hamburger1.png",true, true, 688), 
+  new MenuItem("The tasty chicken burger", "betterhamburger2.png", true, true, 712),
+  new MenuItem("The mega deluxe burger", "megaburger.png", true , true, 924),
+  new MenuItem("The very crispy fries", "frecnh_fries.png", true, false, 99)
+];
+console.log(burgerArray)
+
 export default {
   name: 'HomeView',
   components: {
@@ -25,10 +41,7 @@ export default {
   },
   data: function () {
     return {
-      burgers: [ {name: "small burger", kCal: 250},
-                 {name: "standard burger", kCal: 450},
-                 {name: "large burger", kCal: 850}
-               ]
+      burgers: burgerArray
     }
   },
   methods: {
@@ -53,6 +66,6 @@ export default {
   #map {
     width: 300px;
     height: 300px;
-    background-color: red;
+    background-color: pink;
   }
 </style>
