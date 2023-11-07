@@ -1,3 +1,4 @@
+// The template
 <template>
   <div>
     <div>
@@ -11,6 +12,7 @@
     </div>
   </div>
 </template>
+// End of template
 
 <script>
 import Burger from '../components/OneBurger.vue'
@@ -33,6 +35,8 @@ const burgerArray = [
   new MenuItem("The very crispy fries", "frecnh_fries.png", true, false, 99)
 ];
 console.log(burgerArray)
+
+
 
 export default {
   name: 'HomeView',
@@ -62,6 +66,7 @@ export default {
 }
 </script>
 
+// The styling part
 <style>
   #map {
     width: 300px;
@@ -69,3 +74,4 @@ export default {
     background-color: pink;
   }
 </style>
+//End of styling

@@ -9,23 +9,26 @@ $blue-violet: #8338ecff;
 $azure: #3a86ffff;
 */
 
+body{
+    font-size: 16px;
+}
+
 header{        /*Huvudtitel*/
-    padding-top: 70px;
-    padding-left: 216px;
-    padding-right: 2px;
-    margin:10px;
     position: absolute;
-    font-size: 85pt;
+    margin: 0 auto;
     color: #ff006eff;
-    
-    z-index: 2; /*ChatGPT singe "margin-top did not work*/    
+    text-align: center; 
+    top: 10%; 
+    left: 0; 
+    right: 0;
+    z-index: 2;  /*ChatGPT singe "margin-top did not work*/
+    font-size: 5.5em; 
 }
 
 .topPage{
     height: 250px;
-    margin-left: 2px;
-    margin-right: 2px;
-    padding: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
     text-align: center;
     overflow: hidden;
 }
@@ -34,26 +37,28 @@ header{        /*Huvudtitel*/
 .stars{
     width:100%;
     height: 350px;
-    opacity: 0.9;
+    opacity: 0.8;
 }
 
 .deliveryInfo,.firstText{
+    background-color: #FFFACD; 
     border: 5px solid #8338ecff; 
+    border-radius:50px; 
     padding-left: 50px; 
     padding-top: 20px;
     padding-bottom: 20px;
-    border-radius:50px; 
-    background-color: #FFFACD; 
     margin-top: 20px;
     margin-bottom: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
  }
 
  h1{
-    font-size: 30pt;
+    font-size:  2.5em;
  }
 
- h2, h33{
-    font-size: 22pt;
+ h2, h3{
+    font-size: 1.8em;
  }
 
 .burger p{
@@ -67,11 +72,11 @@ body{
 }
 
 p, ul, label{
-    font-size: 18pt;
+    font-size: 1.5em;
     
 }
 
-::placeholder{
+::placeholder{  
     font-size: 11.5pt;
     color: #00173C;
     opacity: 0.7;
@@ -83,13 +88,15 @@ p, ul, label{
     border: 5px solid #8338ecff;  
     border-radius:50px; 
     grid-template-columns: 25% 25% 25% 25%;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 .burger{
     text-align: center;
 }
 
-.deliveryInfo{      /*Information sektion*/
+#theDeliveryInfo{      /*Information sektion*/
     background:linear-gradient(180deg, #8338ecff , #ff006eff, #fb5607ff, #ffbe0bff);
     color:#00173C;
 }
@@ -99,6 +106,7 @@ li::marker {         /*Listmarkörer*/
     text-align: center;
     color: hsl(217, 100%, 12%);
 }
+
 
 button {      /* The button*/
     padding: 2px 12px 2px 12px;
@@ -115,6 +123,7 @@ button {      /* The button*/
 
 button:hover {      /*När man håller på the button*/
     background: linear-gradient(225deg, #ffbe0bff, #fb5607ff, #ff006eff, #8338ecff, #3a86ffff);
+    cursor:grab;
 
  }
  hr{        /* "Horizontal line"*/
@@ -126,7 +135,10 @@ button:hover {      /*När man håller på the button*/
 
  .foodInfo{
     list-style-position: inside;
+    font-weight: bold;
  }
+
+
  footer{
     color:  #00173C;
  }
