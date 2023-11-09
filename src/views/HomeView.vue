@@ -1,6 +1,6 @@
 // The template
 
-<template>
+<template> <!-- "HTML kod", kommentera såhär-->
 
 <div class="topPage"> 
     <header>Burger Inc. Uppsala</header> 
@@ -155,7 +155,7 @@
 </template>
 // End of template
 
-<script>
+<script> /* "JavaScript kod", kommentera såhär */
 import Burger from '../components/OneBurger.vue'
 import io from 'socket.io-client'
 
@@ -209,7 +209,7 @@ export default {
 </script>
 
 // The styling part
-<style>
+<style> /** "CSS kod", kommentera såhär */
 @import url('https://fonts.googleapis.com/css2?family=Bungee+Inline&display=swap');
 
 body{
@@ -221,25 +221,16 @@ header{        /*Huvudtitel*/
     margin: 0 auto;
     color: #ff006eff;
     text-align: center; 
-    top: 10%; 
+    top: 8%; 
     left: 0; 
     right: 0;
     z-index: 2;  /*ChatGPT singe "margin-top did not work*/
-    font-size: 5.5em; 
+    font-size: 7em; 
 }
-
-head{
-    height: 250px;
-    margin-left: 10px;
-    margin-right: 10px;
-    text-align: center;
-    overflow: hidden;
-}
-
 
 .stars{
     width:100%;
-    height: 350px;
+    height: 250px;
     opacity: 0.8;
 }
 
@@ -305,9 +296,9 @@ p, ul, label{
 }
 
 li::marker {         /*Listmarkörer*/
-    content: "✔  ";
-    text-align: center;
+    content: "✔";
     color: hsl(217, 100%, 12%);
+    text-align: center;
 }
 
 
