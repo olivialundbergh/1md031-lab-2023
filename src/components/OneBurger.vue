@@ -17,7 +17,7 @@
 
 
     <div>
-      {{ burger.name }} {{ burger.kCal }}
+      {{ burger.name }} {{ burger.kCal }} <!--Det som printas i arrayen i HomeView-->
     </div>
   </template>
   
@@ -29,6 +29,7 @@
     }
   }
   </script>
+  
   
   <!-- Add "scoped" attribute to limit CSS to this component only -->
   <style scoped>

@@ -1,6 +1,6 @@
 // The template
-
-<template> <!-- "HTML kod", kommentera såhär-->
+<!--I vue är filosofin att alla filerna ligger i samma fil, men det kan bli stort så man delar upp saker i olika kompontenter-->
+<template> <!-- Förstärkt "HTML kod", kommentera såhär, Filosofin är att tänka mall--->
 
 <div class="topPage"> 
     <header>Burger Inc. Uppsala</header> 
@@ -142,10 +142,10 @@
     <div>
       <h1>Burgers</h1>
       <Burger v-for="burger in burgers"
-              v-bind:burger="burger" 
-              v-bind:key="burger.name"/>
+              v-bind:burger="burger"    
+              v-bind:key="burger.name"/> <!--En array av burgare, v-bind binder-->
     </div>
-    <div id="map" v-on:click="addOrder">
+    <div id="map" v-on:click="addOrder">       <!--v-on = event, då ska det som står " "- hända-->
       click here
     </div>
   </div>
@@ -160,7 +160,8 @@ import Burger from '../components/OneBurger.vue'
 import io from 'socket.io-client'
 
 
-const socket = io();
+const socket = io();    // läser in socket bibliotek som används för att förenkla användning av websocket
+
 
 //Här ska burger funkttionen ligga
 function MenuItem(name, url, gluten, lactose, kcal) {
@@ -187,7 +188,7 @@ export default {
   },
   data: function () {
     return {
-      burgers: burgerArray
+      burgers: burgerArray  // 
     }
   },
   methods: {
@@ -200,8 +201,8 @@ export default {
       socket.emit("addOrder", { orderId: this.getOrderNumber(),
                                 details: { x: event.clientX - 10 - offset.x,
                                            y: event.clientY - 10 - offset.y },
-                                orderItems: ["Beans", "Curry"]
-                              }
+                                orderItems: ["Olivia", "Curry"]
+                              } // den triggas vid klick
                  );
     }
   }
@@ -340,6 +341,7 @@ button:hover {      /*När man håller på the button*/
     width: 300px;
     height: 300px;
     background-color: pink;
+    background-image: url(../../public/img/polacks.jpg);
   }
 </style>
 //End of styling
