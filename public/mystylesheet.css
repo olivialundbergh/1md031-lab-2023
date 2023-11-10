@@ -1,144 +1,169 @@
 @import url("reset.css");
-@import url('https://fonts.googleapis.com/css2?family=Bungee+Inline&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Bungee+Inline&display=swap");
 /*c Stylesheet burger ordering inc.*/
-/*
-$amber: #ffbe0bff;
-$orange-pantone: #fb5607ff;
-$rose: #ff006eff;
-$blue-violet: #8338ecff;
-$azure: #3a86ffff;
-*/
 
-body{
-    font-size: 16px;
+body {
+  font-size: 16px;
 }
 
-header{        /*Huvudtitel*/
-    position: absolute;
-    margin: 0 auto;
-    color: #ff006eff;
-    text-align: center; 
-    top: 10%; 
-    left: 0; 
-    right: 0;
-    z-index: 2;  /*ChatGPT singe "margin-top did not work*/
-    font-size: 5.5em; 
+header {
+  /*Huvudtitel*/
+  position: absolute;
+  margin: 0 auto;
+  color: #ff006eff;
+  text-align: center;
+  top: 10%;
+  left: 0;
+  right: 0;
+  z-index: 2; /*ChatGPT singe "margin-top did not work*/
+  font-size: 5.5em;
 }
 
-.topPage{
-    height: 250px;
-    margin-left: 10px;
-    margin-right: 10px;
-    text-align: center;
-    overflow: hidden;
+.topPage {
+  height: 250px;
+  margin-left: 10px;
+  margin-right: 10px;
+  text-align: center;
+  overflow: hidden;
 }
 
-
-.stars{
-    width:100%;
-    height: 350px;
-    opacity: 0.8;
+.stars {
+  width: 100%;
+  height: 350px;
+  opacity: 0.8;
 }
 
-.deliveryInfo,.firstText{
-    background-color: #FFFACD; 
-    border: 5px solid #8338ecff; 
-    border-radius:50px; 
-    padding-left: 50px; 
-    padding-top: 20px;
-    padding-bottom: 20px;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    margin-left: 10px;
-    margin-right: 10px;
- }
-
- h1{
-    font-size:  2.5em;
- }
-
- h2, h3{
-    font-size: 1.8em;
- }
-
-.burger p{
-    color: #00173C;
+.deliveryInfo,
+.firstText {
+  background-color: #fffacd;
+  border: 5px solid #8338ecff;
+  border-radius: 50px;
+  padding-left: 50px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
-body{
-    font-family: 'Bungee Inline', sans-serif;
-    color:#ffbe0bff;
-    background-color:#A2D6F9;
+h1 {
+  font-size: 2.5em;
 }
 
-p, ul, label{
-    font-size: 1.5em;
-    
+h2,
+h3 {
+  font-size: 1.8em;
 }
 
-::placeholder{  
-    font-size: 11.5pt;
-    color: #00173C;
-    opacity: 0.7;
+.burger p {
+  color: #00173c;
 }
 
-.wrapper{
-    display: grid;
-    background: radial-gradient(#ffbe0bff, #fb5607ff, #ff006eff, #8338ecff, #3a86ffff);
-    border: 5px solid #8338ecff;  
-    border-radius:50px; 
-    grid-template-columns: 25% 25% 25% 25%;
-    margin-left: 10px;
-    margin-right: 10px;
+body {
+  font-family: "Bungee Inline", sans-serif;
+  color: #ffbe0bff;
+  background-color: #a2d6f9;
 }
 
-.burger{
-    text-align: center;
+p,
+ul,
+label {
+  font-size: 1.5em;
 }
 
-#theDeliveryInfo{      /*Information sektion*/
-    background:linear-gradient(180deg, #8338ecff , #ff006eff, #fb5607ff, #ffbe0bff);
-    color:#00173C;
+::placeholder {
+  font-size: 11.5pt;
+  color: #00173c;
+  opacity: 0.7;
 }
 
-li::marker {         /*Listmarkörer*/
-    content: "✔  ";
-    text-align: center;
-    color: hsl(217, 100%, 12%);
+.wrapper {
+  display: grid;
+  background: radial-gradient(
+    #ffbe0bff,
+    #fb5607ff,
+    #ff006eff,
+    #8338ecff,
+    #3a86ffff
+  );
+  border: 5px solid #8338ecff;
+  border-radius: 50px;
+  grid-template-columns: 25% 25% 25% 25%;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
+.burger {
+  text-align: center;
+}
 
-button {      /* The button*/
-    padding: 2px 12px 2px 12px;
-    margin-top: 5px;
-    margin-bottom: 7px;
-    font-family: 'Bungee Inline', sans-serif;
-    font-size: 20pt;
-    color: black;
-      } 
-      button > img, /*this part selects the img as a direct child of the button*/
-      button > span { /*this part selects the span as a direct child of the button*/
-        vertical-align: middle;  /* Add this to align vertically */
-      }    
+#theDeliveryInfo {
+  /*Information sektion*/
+  background: linear-gradient(
+    180deg,
+    #8338ecff,
+    #ff006eff,
+    #fb5607ff,
+    #ffbe0bff
+  );
+  color: #00173c;
+}
 
-button:hover {      /*När man håller på the button*/
-    background: linear-gradient(225deg, #ffbe0bff, #fb5607ff, #ff006eff, #8338ecff, #3a86ffff);
-    cursor:grab;
+li::marker {
+  /*Listmarkörer*/
+  content: "✔  ";
+  text-align: center;
+  color: hsl(217, 100%, 12%);
+}
 
- }
- hr{        /* "Horizontal line"*/
-    background: linear-gradient(90deg, #ffbe0bff, #fb5607ff, #ff006eff, #8338ecff, #3a86ffff);
-    height: 5px;
-    border:none;
-    margin: 0;
- }
+button {
+  /* The button*/
+  padding: 2px 12px 2px 12px;
+  margin-top: 5px;
+  margin-bottom: 7px;
+  font-family: "Bungee Inline", sans-serif;
+  font-size: 20pt;
+  color: black;
+}
+button > img, /*this part selects the img as a direct child of the button*/
+      button > span {
+  /*this part selects the span as a direct child of the button*/
+  vertical-align: middle; /* Add this to align vertically */
+}
 
- .foodInfo{
-    list-style-position: inside;
-    font-weight: bold;
- }
+button:hover {
+  /*När man håller på the button*/
+  background: linear-gradient(
+    225deg,
+    #ffbe0bff,
+    #fb5607ff,
+    #ff006eff,
+    #8338ecff,
+    #3a86ffff
+  );
+  cursor: grab;
+}
+hr {
+  /* "Horizontal line"*/
+  background: linear-gradient(
+    90deg,
+    #ffbe0bff,
+    #fb5607ff,
+    #ff006eff,
+    #8338ecff,
+    #3a86ffff
+  );
+  height: 5px;
+  border: none;
+  margin: 0;
+}
 
+.foodInfo {
+  list-style-position: inside;
+  font-weight: bold;
+}
 
- footer{
-    color:  #00173C;
- }
+footer {
+  color: #00173c;
+}
