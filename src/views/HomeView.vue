@@ -179,6 +179,7 @@ export default {
       orderedBurgers: {},
       selected: "Card",
       queNumber: 0,
+      location: { x: 0, y: 0 },
     };
   },
 
@@ -408,7 +409,7 @@ hr {
   padding: 0;
 }
 .scrollable {
- width: 95%;
+  width: 95%;
   height: 500px;
   overflow: scroll;
 }
