@@ -1,8 +1,4 @@
-// The template
-<!--I vue är filosofin att alla filerna ligger i samma fil, men det kan bli stort så man delar upp saker i olika kompontenter-->
 <template>
-  <!-- Förstärkt "HTML kod", kommentera såhär, Filosofin är att tänka mall--->
-
   <div class="topPage">
     <header>Burger Inc. Uppsala</header>
     <img class="stars" src="the_Stars.gif" />
@@ -22,9 +18,17 @@
         v-for="burger in burgers"
         v-bind:burger="burger"
         v-bind:key="burger.name"
+        v-on:orderedBurger="addToOrder($event)"
       />
-      <!--En array av burgare, v-bind binder, Här är det som visas, det är som vi skapar vår egna sektion i HTML dokumentet-->
     </div>
+
+    <section class="receipt">
+      <h1>Your chosen order:</h1>
+      <p v-for="(amount, name) in orderedBurgers" :key="name">
+        {{ name }}: {{ amount }}
+      </p>
+      <h4>Total amount of items: {{ calculateAmount() }}</h4>
+    </section>
 
     <section class="deliveryInfo" id="theDeliveryInfo">
       <h1>Your delivery information</h1>
@@ -33,7 +37,7 @@
         <input
           type="text"
           id="firstName"
-          name="firstName"
+          v-model="firstName"
           required="required"
           placeholder="First & Last name..."
         />
@@ -43,16 +47,17 @@
         <input
           type="email"
           id="email"
-          name="email"
+          v-model="email"
           placeholder="E-mail adress..."
         />
       </p>
+
       <p>
         <label for="street">Address</label><br />
         <input
           type="text"
           id="street"
-          name="street"
+          v-model="street"
           required="required"
           placeholder="Home adress..."
         />
@@ -62,7 +67,7 @@
         <input
           type="number"
           id="zipCode"
-          name="zc"
+          v-model="zc"
           required="required"
           placeholder="ZipCode..."
         />
@@ -71,7 +76,7 @@
         <label for="additionalInformation">Additional information</label><br />
         <textarea
           id="additionalInformation"
-          name="textarea"
+          v-model="textarea"
           rows="3"
           cols="30"
           placeholder="Put extra info on how to deliver here..."
@@ -84,14 +89,13 @@
         <input
           type="radio"
           id="nonDisclosed"
-          name="gender"
           value="nonDisclosed"
-          checked
+          v-model="picked"
         />
         <label for="nonDisclosed">Prefer not to disclose</label><br />
-        <input type="radio" id="woman" name="gender" value="Woman" />
+        <input type="radio" id="woman" value="woman" v-model="picked" />
         <label for="woman">Woman</label><br />
-        <input type="radio" id="man" name="gender" value="Man" />
+        <input type="radio" id="man" value="Man" v-model="picked" />
         <label for="man">Man</label>
       </form>
 
@@ -99,63 +103,69 @@
       <h3>Payment choice:</h3>
       <p>
         <label for="payment"> Payment method: </label>
-        <select id="payment" name="pmt">
+
+        <select id="payment" v-model="selected">
           <option>Klarna</option>
           <option>Swish</option>
-          <option selected>Card</option>
+          <option>Card</option>
           <option>Cash</option>
           <option>Invoice</option>
         </select>
       </p>
+      <div>
+        <br />
+        <h3>Click on your location:</h3>
+        <section class="scrollable">
+          <div id="map" v-on:click="addOrder">You can scroll me!</div>
+        </section>
+      </div>
+      <br />
 
-      <button type="submit">
+      <button v-on:click="consolePrint">
         <img src="burger.gif" style="width: 55px" />
         Send info!
       </button>
     </section>
-    <h1>About us:</h1>
-    <p>
-      We are an Uppsala based company, with fast deliveries and happy customers!
-    </p>
+    <section class="theEndPage">
+      <h1>About us:</h1>
+      <p>
+        We are an Uppsala based company, with fast deliveries and happy
+        customers!
+      </p>
+    </section>
   </main>
 
   <hr />
   <br />
   <footer>&copy; Burger Inc. Uppsala 2023</footer>
-
-  <div>
-    <div id="map" v-on:click="addOrder">
-      <!--v-on = event, då ska det som står " "- hända-->
-      click here
-    </div>
-  </div>
 </template>
 // End of template
 
 <script>
 /* "JavaScript kod" */
+
+import menu from "../assets/menu.json";
 import Burger from "../components/OneBurger.vue";
 import io from "socket.io-client";
 
 const socket = io(); // läser in socket bibliotek som används för att förenkla användning av websocket
 
-//Här ska burger funktionen ligga
-function MenuItem(name, url, gluten, lactose, kcal, meatType) {
+/*function MenuItem(name, url, gluten, lactose, kcal, meatType) {
   this.name = name; // The *this* keyword refers to the object itself
   this.theUrl = url;
   this.containsGluten = gluten;
   this.containsLactose = lactose;
   this.calories = kcal;
   this.theMeatType = meatType;
-}
+}*/
 
-const burgerArray = [
+/**const burgerArray = [
   new MenuItem("The extra cheesy burger", "hamburger1.png", true, true, 688, "Beef"),
   new MenuItem("The tasty chicken burger", "hamburger2.png", true, true, 712, "Chicken"),
   new MenuItem("The mega deluxe burger", "megaburger.png", true, true, 924, "Beef"),
   new MenuItem("The extremely crispy fries", "frecnh_fries.png", false, false, 99, "Veggie"),
 ];
-console.log(burgerArray);
+console.log(burgerArray);*/
 
 export default {
   name: "HomeView",
@@ -164,12 +174,39 @@ export default {
   },
   data: function () {
     return {
-      burgers: burgerArray, //burgers= samtliga burgare i burgerArray, detta är en loop
+      burgers: menu, //burgers= samtliga burgare i burgerArray, detta är en loop
+      picked: "nonDisclosed",
+      orderedBurgers: {},
+      selected: "Card",
+      queNumber: 0,
     };
   },
+
   methods: {
     getOrderNumber: function () {
-      return Math.floor(Math.random() * 100000);
+      return (this.queNumber += 1);
+    },
+    consolePrint: function () {
+      console.log(
+        this.firstName,
+        this.email,
+        this.street,
+        this.textarea,
+        this.picked,
+        this.selected
+      );
+    },
+    addToOrder: function (event) {
+      this.orderedBurgers[event.name] = event.amount;
+      return event.amount;
+    },
+    calculateAmount: function () {
+      let sum = 0;
+      for (let amount of Object.values(this.orderedBurgers)) {
+        //ChatGPT
+        sum += amount;
+      }
+      return sum;
     },
     addOrder: function (event) {
       var offset = {
@@ -184,7 +221,7 @@ export default {
             x: event.clientX - 10 - offset.x,
             y: event.clientY - 10 - offset.y,
           }, //var klickade vi på sidan och tar bort 10 ( bubblans radie) och drar bort offseten= positionen!
-          orderItems: ["Olivia", "Curry"], // här är det som står, ligger i en array nu men vi antagligen skickar med ett objekt
+          orderItems: [this.firstName, this.orderedBurgers], // här är det som står, ligger i en array nu men vi antagligen skickar med ett objekt
         } //socket emit skickar "datan", och socket.on mottar
       );
     },
@@ -192,9 +229,7 @@ export default {
 };
 </script>
 
-// The styling part
 <style>
-/** "CSS kod", kommentera såhär */
 @import url("https://fonts.googleapis.com/css2?family=Bungee+Inline&display=swap");
 
 body {
@@ -221,7 +256,8 @@ header {
 }
 
 .deliveryInfo,
-.firstText {
+.firstText,
+.receipt {
   background-color: #fffacd;
   border: 5px solid #8338ecff;
   border-radius: 50px;
@@ -232,6 +268,11 @@ header {
   margin-bottom: 20px;
   margin-left: 10px;
   margin-right: 10px;
+}
+
+h4 {
+  color: #8338ecff;
+  font-size: 25px;
 }
 
 h1 {
@@ -279,8 +320,9 @@ label {
   grid-template-columns: 25% 25% 25% 25%;
   /*margin-left: 15px;
   margin-right: 15px;**/
-  margin:20px;
-  padding:30px;
+  margin: 20px;
+  padding: 30px;
+  height: 52em;
 }
 
 .burger {
@@ -297,6 +339,9 @@ label {
     #ffbe0bff
   );
   color: #00173c;
+}
+label {
+  font-size: 20px;
 }
 
 li::marker {
@@ -348,15 +393,28 @@ hr {
   margin: 0;
 }
 
+#map,
+.scrollable {
+  margin: 0;
+  padding: 0;
+}
 
+#map {
+  width: 1920px;
+  height: 1078px;
+  background-image: url(../../public/img/polacks.jpg);
+  background-position: center;
+  margin: 0;
+  padding: 0;
+}
+.scrollable {
+ width: 95%;
+  height: 500px;
+  overflow: scroll;
+}
+.theEndPage,
 footer {
   color: #00173c;
-}
-#map {
-  width: 300px;
-  height: 300px;
-  background-color: pink;
-  background-image: url(../../public/img/polacks.jpg);
 }
 </style>
 //End of styling

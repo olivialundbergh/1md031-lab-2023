@@ -1,20 +1,22 @@
 <template>
   <div>
     <h1 class="name">{{ burger.name }}</h1>
-    <img v-bind:src="burger.theUrl" alt=burger.name>
-
+    <img v-bind:src="burger.theUrl" :title="burger.name" :alt="burger.name" />
     <div class="foodInfo">
       <ul>
-        <li>{{ glutenCheck(burger.containsGluten) }}</li>
-        <li>{{ lactoseCheck(burger.containsLactose) }}</li>
         <li>{{ burger.theMeatType }}</li>
+        <li v-if="burger.containsLactose">Dairy</li>
+        <li v-if="burger.containsGluten">Gluten</li>
         <li>{{ burger.calories }} kCal</li>
       </ul>
     </div>
+    <section class="theButtons">
+      <button v-on:click="increaseAmount">+</button>
+      <button v-on:click="decreaseAmount">-</button>
+      <p v-if="amountOrdered">{{ amountOrdered }}</p>
+    </section>
   </div>
 </template>
-
-
 
 <script>
 export default {
@@ -22,24 +24,42 @@ export default {
   props: {
     burger: Object,
   },
+  data: function () {
+    return {
+      amountOrdered: 0,
+    };
+  },
+
   methods: {
     glutenCheck(gluten) {
+      // Not used
       if (gluten) return "Gluten";
       else return "No Gluten";
     },
     lactoseCheck(lactose) {
+      // Not used
       if (lactose) return "Dairy";
       else return "No Dairy";
     },
-    getPublicImageUrl(relativePath) {
-      // eslint-disable-next-line no-undef
-      return process.env.BASE_URL + relativePath;
+    increaseAmount() {
+      this.amountOrdered++;
+      this.$emit("orderedBurger", {
+        name: this.burger.name,
+        amount: this.amountOrdered,
+      });
+    },
+    decreaseAmount() {
+      if (this.amountOrdered > 0) {
+        this.amountOrdered--;
+        this.$emit("orderedBurger", {
+          name: this.burger.name,
+          amount: this.amountOrdered,
+        });
+      }
     },
   },
 };
 </script>
-
-
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
@@ -61,5 +81,16 @@ h1 {
   text-align: center;
   margin-left: -70px;
 }
+.theButtons {
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
 
+button {
+  text-align: center;
+  width: 45px;
+  height: 45px;
+  margin: 2px;
+}
 </style>

@@ -1,0 +1,37 @@
+[
+  {
+    "name": "The extra cheesy burger",
+    "theUrl": "hamburger1.png",
+    "containsLactose": true,
+    "containsGluten": true,
+    "calories": 688,
+    "theMeatType": "Beef"
+  },
+
+  {
+    "name": "The tasty chicken burger",
+    "theUrl": "hamburger2.png",
+    "containsLactose": true,
+    "containsGluten": true,
+    "calories": 712,
+    "theMeatType": "Chicken"
+  },
+
+  {
+    "name": "The mega deluxe burger",
+    "theUrl": "megaburger.png",
+    "containsLactose": true,
+    "containsGluten": true,
+    "calories": 924,
+    "theMeatType": "Beef"
+  },
+
+  {
+    "name": "The extremely crispy fries",
+    "theUrl": "frecnh_fries.png",
+    "containsLactose": false,
+    "containsGluten": false,
+    "calories": 99,
+    "theMeatType": "Veggie"
+  }
+]
