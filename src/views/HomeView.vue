@@ -25,13 +25,13 @@
     <section class="receipt">
       <h1>Your chosen order:</h1>
       <p v-for="(amount, name) in orderedBurgers" :key="name">
-        {{ name }}: {{ amount }}
+        {{ name }}:  {{ amount }}
       </p>
       <h4>Total amount of items: {{ calculateAmount() }}</h4>
     </section>
 
     <section class="deliveryInfo" id="theDeliveryInfo">
-      <h1>Your delivery information</h1>
+      <h1>Your delivery information</h1> 
       <p>
         <label for="firstName">Your Name</label><br />
         <input
@@ -52,7 +52,7 @@
         />
       </p>
 
-      <p>
+     <!-- <p>
         <label for="street">Address</label><br />
         <input
           type="text"
@@ -71,8 +71,8 @@
           required="required"
           placeholder="ZipCode..."
         />
-      </p>
-      <p>
+      </p>-->
+      <!-- <p>
         <label for="additionalInformation">Additional information</label><br />
         <textarea
           id="additionalInformation"
@@ -82,7 +82,7 @@
           placeholder="Put extra info on how to deliver here..."
           maxlength="100"
         ></textarea>
-      </p>
+      </p> -->
 
       <form>
         <h3>Your gender:</h3>
@@ -114,14 +114,31 @@
       </p>
       <div>
         <br />
+
         <h3>Click on your location:</h3>
         <section class="scrollable">
-          <div id="map" v-on:click="addOrder">You can scroll me!</div>
+          <div
+            id="map"
+            v-on:click="setLocation"
+            v-bind:style="{
+              background:
+                'url(' + require('../../public/img/polacks.jpg') + ')',
+            }"
+          >
+            <div
+              v-bind:style="{
+                left: this.location.x + 'px',
+                top: this.location.y + 'px',
+              }"
+            >
+              T
+            </div>
+          </div>
         </section>
       </div>
-      <br />
 
-      <button v-on:click="consolePrint">
+      <br />
+      <button v-on:click="sendInformation">
         <img src="burger.gif" style="width: 55px" />
         Send info!
       </button>
@@ -177,6 +194,7 @@ export default {
       burgers: menu, //burgers= samtliga burgare i burgerArray, detta är en loop
       picked: "nonDisclosed",
       orderedBurgers: {},
+      customerInfo: [],
       selected: "Card",
       queNumber: 0,
       location: { x: 0, y: 0 },
@@ -187,15 +205,11 @@ export default {
     getOrderNumber: function () {
       return (this.queNumber += 1);
     },
-    consolePrint: function () {
-      console.log(
-        this.firstName,
-        this.email,
-        this.street,
-        this.textarea,
-        this.picked,
-        this.selected
-      );
+    formInformation: function () {
+      this.customerInfo=[this.firstName, this.email, this.picked, this.selected]
+      console.log(this.customerInfo)
+     return this.customerInfo
+    
     },
     addToOrder: function (event) {
       this.orderedBurgers[event.name] = event.amount;
@@ -211,21 +225,47 @@ export default {
     },
     addOrder: function (event) {
       var offset = {
-        x: event.currentTarget.getBoundingClientRect().left, //var är offseten, hur långt ner och till vänster
-        y: event.currentTarget.getBoundingClientRect().top,
+        x: event.currentTarget.getBoundingClientRect().left,
       };
       socket.emit(
         "addOrder",
         {
-          orderId: this.getOrderNumber(), //slumpar ett nummer
+          orderId: this.getOrderNumber(), 
           details: {
             x: event.clientX - 10 - offset.x,
             y: event.clientY - 10 - offset.y,
-          }, //var klickade vi på sidan och tar bort 10 ( bubblans radie) och drar bort offseten= positionen!
+          },
           orderItems: [this.firstName, this.orderedBurgers], // här är det som står, ligger i en array nu men vi antagligen skickar med ett objekt
-        } //socket emit skickar "datan", och socket.on mottar
+        } 
       );
+      this.location.x=event.clientX - 10 - offset.x,
+      this.location.y=event.clientY - 10 - offset.y
     },
+
+    setLocation: function(){
+      var offset = {
+        x: event.currentTarget.getBoundingClientRect().left, 
+        y: event.currentTarget.getBoundingClientRect().top,
+      };
+      this.location={x:event.clientX - 10 - offset.x,
+        y:event.clientY - 10 - offset.y}
+    },
+    sendInformation:function(){
+     
+      socket.emit(
+        "addOrder",
+        {
+          orderId: this.getOrderNumber(), 
+          details: {x: this.location.x, y:this.location.y,},
+          orderItems: [this.orderedBurgers],
+          givenInfo:  this.formInformation(), 
+    
+        } 
+      
+      );
+    }
+    //** <p v-for="(amount, name) in orderedBurgers" :key="name">{{ name }}: {{ amount }} */
+
   },
 };
 </script>
@@ -393,26 +433,39 @@ hr {
   border: none;
   margin: 0;
 }
-
+/*
 #map,
 .scrollable {
   margin: 0;
   padding: 0;
-}
+}*/
 
-#map {
-  width: 1920px;
-  height: 1078px;
-  background-image: url(../../public/img/polacks.jpg);
-  background-position: center;
-  margin: 0;
-  padding: 0;
-}
 .scrollable {
   width: 95%;
   height: 500px;
   overflow: scroll;
 }
+
+#map {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  background-repeat: no-repeat;
+  width: 1920px;
+  height: 1078px;
+  cursor: crosshair;
+}
+
+#map div {
+  position: absolute;
+  background: #00173c;
+  color: white;
+  border-radius: 100px;
+  width: 21px;
+  height: 21px;
+  text-align: center;
+}
+
 .theEndPage,
 footer {
   color: #00173c;

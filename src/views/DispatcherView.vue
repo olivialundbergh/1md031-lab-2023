@@ -3,12 +3,24 @@
 
   <!-- I template kommenterar man såhär, som i HTML-->
 
+  <!-- Kommentera med command shift 7  -->
+  <section class="dispatchStyle">
   <div id="orders">
     <div id="orderList">
-      <div v-for="(order, key) in orders" v-bind:key="'order' + key">
-        #{{ key }}: {{ order.orderItems.join(", ") }}
-      </div>
-      <button v-on:click="clearQueue">Clear Queue</button>
+      <!-- <div v-for="(order, key) in orders" v-bind:key="'order' + key">
+   {{ key }}: {{ order.orderItems.join("\n ") }} 
+   {{ "testing:" }}{{JSON.stringify(order.orderItems) }} -->
+  
+   <dic v-for="(order, index) in orders" :key="index">
+    <section id="aCustomerOrder">
+    #{{ order.orderId }}: {{getName(order) }}:  {{order.orderItems}}
+    <section> {{remainingInfo(order)}} </section>
+    <hr class="smaller">
+  </section>
+   </dic>
+
+
+      <button class="clearButton" v-on:click="clearQueue">Clear Queue</button>
     </div>
     <div
       id="dots"
@@ -28,6 +40,7 @@
       </div>
     </div>
   </div>
+</section>
 </template>
 
 <script>
@@ -49,12 +62,24 @@ export default {
     clearQueue: function () {
       socket.emit("clearQueue");
     },
+    getName: function(order){
+    return order.givenInfo[0];
   },
+  remainingInfo: function(order){
+    return ((order.givenInfo).splice(1,3)).join(",  ")
+  }
+  
+  },
+ 
+
 };
 </script>
 
 <style>
 /* "CSS kod" */
+.smaller{
+  height:2px;
+}
 #orderList {
   top: 1em;
   left: 1em;
@@ -79,8 +104,18 @@ export default {
   background: black;
   color: white;
   border-radius: 10px;
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
   text-align: center;
+}
+.dispatchStyle, .clearButton{
+  font-weight: bolder;
+  font-size: 20px;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+#aCustomerOrder{
+  margin:20px;
+
 }
 </style>
