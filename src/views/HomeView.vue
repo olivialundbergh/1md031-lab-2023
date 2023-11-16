@@ -25,13 +25,13 @@
     <section class="receipt">
       <h1>Your chosen order:</h1>
       <p v-for="(amount, name) in orderedBurgers" :key="name">
-        {{ name }}:  {{ amount }}
+        {{ name }}: {{ amount }}
       </p>
       <h4>Total amount of items: {{ calculateAmount() }}</h4>
     </section>
 
     <section class="deliveryInfo" id="theDeliveryInfo">
-      <h1>Your delivery information</h1> 
+      <h1>Your delivery information</h1>
       <p>
         <label for="firstName">Your Name</label><br />
         <input
@@ -52,7 +52,7 @@
         />
       </p>
 
-     <!-- <p>
+      <!-- <p>
         <label for="street">Address</label><br />
         <input
           type="text"
@@ -206,15 +206,23 @@ export default {
       return (this.queNumber += 1);
     },
     formInformation: function () {
-      this.customerInfo=[this.firstName, this.email, this.picked, this.selected]
-      console.log(this.customerInfo)
-     return this.customerInfo
-    
+      this.customerInfo = [
+        this.firstName,
+        this.email,
+        this.picked,
+        this.selected,
+      ];
+      console.log(this.customerInfo);
+      return this.customerInfo;
     },
-    addToOrder: function (event) {
-      this.orderedBurgers[event.name] = event.amount;
-      return event.amount;
+
+   addToOrder: function (event) {
+    if (event.amount===0){
+      delete this.orderedBurgers[event.name] }
+    else{
+      this.orderedBurgers[event.name] = event.amount;} 
     },
+
     calculateAmount: function () {
       let sum = 0;
       for (let amount of Object.values(this.orderedBurgers)) {
@@ -227,45 +235,38 @@ export default {
       var offset = {
         x: event.currentTarget.getBoundingClientRect().left,
       };
-      socket.emit(
-        "addOrder",
-        {
-          orderId: this.getOrderNumber(), 
-          details: {
-            x: event.clientX - 10 - offset.x,
-            y: event.clientY - 10 - offset.y,
-          },
-          orderItems: [this.firstName, this.orderedBurgers], // här är det som står, ligger i en array nu men vi antagligen skickar med ett objekt
-        } 
-      );
-      this.location.x=event.clientX - 10 - offset.x,
-      this.location.y=event.clientY - 10 - offset.y
+      socket.emit("addOrder", {
+        orderId: this.getOrderNumber(),
+        details: {
+          x: event.clientX - 10 - offset.x,
+          y: event.clientY - 10 - offset.y,
+        },
+        orderItems: [this.firstName, this.orderedBurgers], // här är det som står, ligger i en array nu men vi antagligen skickar med ett objekt
+      });
+      (this.location.x = event.clientX - 10 - offset.x),
+        (this.location.y = event.clientY - 10 - offset.y);
     },
 
-    setLocation: function(){
+    setLocation: function () {
       var offset = {
-        x: event.currentTarget.getBoundingClientRect().left, 
+        x: event.currentTarget.getBoundingClientRect().left,
         y: event.currentTarget.getBoundingClientRect().top,
       };
-      this.location={x:event.clientX - 10 - offset.x,
-        y:event.clientY - 10 - offset.y}
+      this.location = {
+        x: event.clientX - 10 - offset.x,
+        y: event.clientY - 10 - offset.y,
+      };
     },
-    sendInformation:function(){
-     
-      socket.emit(
-        "addOrder",
-        {
-          orderId: this.getOrderNumber(), 
-          details: {x: this.location.x, y:this.location.y,},
-          orderItems: [this.orderedBurgers],
-          givenInfo:  this.formInformation(), 
-    
-        } 
-      
-      );
-    }
-    //** <p v-for="(amount, name) in orderedBurgers" :key="name">{{ name }}: {{ amount }} */
 
+    sendInformation: function () {
+      socket.emit("addOrder", {
+        orderId: this.getOrderNumber(),
+        details: { x: this.location.x, y: this.location.y },
+        orderItems: this.orderedBurgers,
+        givenInfo: this.formInformation(),
+      });
+    },
+    //** <p v-for="(amount, name) in orderedBurgers" :key="name">{{ name }}: {{ amount }} */
   },
 };
 </script>
@@ -359,8 +360,6 @@ label {
   border: 5px solid #8338ecff;
   border-radius: 50px;
   grid-template-columns: 25% 25% 25% 25%;
-  /*margin-left: 15px;
-  margin-right: 15px;**/
   margin: 20px;
   padding: 30px;
   height: 52em;
@@ -386,7 +385,6 @@ label {
 }
 
 li::marker {
-  /*Listmarkörer*/
   content: "✔";
   color: hsl(217, 100%, 12%);
   text-align: center;
@@ -420,7 +418,7 @@ button:hover {
   cursor: grab;
 }
 hr {
-  /* "Horizontal line"*/
+
   background: linear-gradient(
     90deg,
     #ffbe0bff,
@@ -433,12 +431,6 @@ hr {
   border: none;
   margin: 0;
 }
-/*
-#map,
-.scrollable {
-  margin: 0;
-  padding: 0;
-}*/
 
 .scrollable {
   width: 95%;

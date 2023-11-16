@@ -1,51 +1,46 @@
 <template>
-  <!-- HTML koden-->
-
-  <!-- I template kommenterar man såhär, som i HTML-->
-
   <!-- Kommentera med command shift 7  -->
   <section class="dispatchStyle">
-  <div id="orders">
-    <div id="orderList">
-      <!-- <div v-for="(order, key) in orders" v-bind:key="'order' + key">
-   {{ key }}: {{ order.orderItems.join("\n ") }} 
-   {{ "testing:" }}{{JSON.stringify(order.orderItems) }} -->
-  
-   <dic v-for="(order, index) in orders" :key="index">
-    <section id="aCustomerOrder">
-    #{{ order.orderId }}: {{getName(order) }}:  {{order.orderItems}}
-    <section> {{remainingInfo(order)}} </section>
-    <hr class="smaller">
-  </section>
-   </dic>
+    <div id="orders">
+      <div id="orderList">
+        <dic v-for="(order, index) in orders" :key="index">
+          <section id="aCustomerOrder">
 
+            # {{ order.orderId }}: {{ getName(order) }}
+            <section v-for="(item, amount) in order.orderItems" :key="amount">
+              {{ amount }}: {{ item }}
+            </section>
 
-      <button class="clearButton" v-on:click="clearQueue">Clear Queue</button>
-    </div>
-    <div
-      id="dots"
-      v-bind:style="{
-        background: 'url(' + require('../../public/img/polacks.jpg') + ')',
-      }"
-    >
+            <section>{{ remainingInfo(order) }}</section>
+            <hr class="smaller" />
+          </section>
+        </dic>
+
+        <button class="clearButton" v-on:click="clearQueue">Clear Queue</button>
+      </div>
       <div
-        v-for="(order, key) in orders"
+        id="dots"
         v-bind:style="{
-          left: order.details.x + 'px',
-          top: order.details.y + 'px',
+          background: 'url(' + require('../../public/img/polacks.jpg') + ')',
         }"
-        v-bind:key="'dots' + key"
       >
-        {{ key }}
+        <div
+          v-for="(order, key) in orders"
+          v-bind:style="{
+            left: order.details.x + 'px',
+            top: order.details.y + 'px',
+          }"
+          v-bind:key="'dots' + key"
+        >
+          {{ key }}
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 </template>
 
 <script>
-// "JavaScript koden" /** Kommenterar stycken såhär */
-import io from "socket.io-client"; //hej
+import io from "socket.io-client";
 const socket = io();
 
 export default {
@@ -62,23 +57,19 @@ export default {
     clearQueue: function () {
       socket.emit("clearQueue");
     },
-    getName: function(order){
-    return order.givenInfo[0];
+    getName: function (order) {
+      return order.givenInfo[0];
+    },
+    remainingInfo: function (order) {
+      return order.givenInfo.splice(1, 3).join(",  ");
+    },
   },
-  remainingInfo: function(order){
-    return ((order.givenInfo).splice(1,3)).join(",  ")
-  }
-  
-  },
- 
-
 };
 </script>
 
 <style>
-/* "CSS kod" */
-.smaller{
-  height:2px;
+.smaller {
+  height: 2px;
 }
 #orderList {
   top: 1em;
@@ -108,14 +99,14 @@ export default {
   height: 22px;
   text-align: center;
 }
-.dispatchStyle, .clearButton{
+.dispatchStyle,
+.clearButton {
   font-weight: bolder;
   font-size: 20px;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: "Times New Roman", Times, serif;
 }
 
-#aCustomerOrder{
-  margin:20px;
-
+#aCustomerOrder {
+  margin: 20px;
 }
 </style>

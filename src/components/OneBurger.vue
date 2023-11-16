@@ -13,11 +13,10 @@
     <section class="theButtons">
       <button v-on:click="increaseAmount">+</button>
       <button v-on:click="decreaseAmount">-</button>
-      <p class="amountP" v-if="amountOrdered">Amount:  {{ amountOrdered }}</p>
+      <p class="amountP" v-if="amountOrdered">Amount: {{ amountOrdered }}</p>
     </section>
   </div>
 </template>
-
 
 <script>
 export default {
@@ -94,7 +93,7 @@ button {
   height: 45px;
   margin: 2px;
 }
-.amountP{
+.amountP {
   font-size: 20px;
 }
 </style>
