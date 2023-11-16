@@ -31,16 +31,15 @@ export default {
   },
 
   methods: {
-    glutenCheck(gluten) {
-      // Not used
-      if (gluten) return "Gluten";
-      else return "No Gluten";
-    },
-    lactoseCheck(lactose) {
-      // Not used
-      if (lactose) return "Dairy";
-      else return "No Dairy";
-    },
+    // glutenCheck(gluten) { // Not used
+    //   if (gluten) return "Gluten";
+    //   else return "No Gluten";
+    // },
+    // lactoseCheck(lactose) { // Not used 
+    //   if (lactose) return "Dairy";
+    //   else return "No Dairy";
+    // },
+    
     increaseAmount() {
       this.amountOrdered++;
       this.$emit("orderedBurger", {
@@ -61,12 +60,8 @@ export default {
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-burger {
-  text-align: center;
-  padding: 2%;
-}
+
 img {
   width: 85%;
 }
